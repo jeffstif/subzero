@@ -1,18 +1,26 @@
 # SubZero Workshop
 
-## Cognito
+## Pipeline Update
 
-Secure the application API using a Cognito User Pool.
+Update your pipeline using [pipeline-template.yaml](pipeline-template.yaml) before continuing.
+
+## Image Processing
+
+A Step Function on the backend will not take uploaded image files and process them. This will include de-duplicating images, creating additional resized versions, and linking the uploaded user to the file in a DynamoDB table.
+
+The `List` Lambda function now queries the DynamoDB table only for files associated to the authenticated client instead of scanning the S3 bucket.
 
 ### AWS Services / Features
 
-- Cognito
-- API Gateway Cognito Authorizer
+- DynamoDB
+- Global DynamoDB Tables
+- SQS
+- Step Functions
 
 ### Module Challenge
 
-Use the Postman collection for this module to test the API endpoints with and without access tokens using the client credentials provided. The endpoints will return information about the claims in the access token.
+Add additional states to the `StateMachine` JSON definition for the following image sizes: 512 and 256. Use the 1024 state as a baseline and modify as needed.
 
-### Next Module: [Image Uploads](../4_Image_Uploads/)
+### Next Module: [Monitoring](../6_Monitoring/)
 
 Once instructed, move on to the next module and update your repository with the provided files (overwrite existing files and your changes).
